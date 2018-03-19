@@ -1,0 +1,22 @@
+<%= file_field_tag 'image' %>
+<%= image_tag '', id: 'preview' %>
+
+<%= form_with(model: product, local: true, html: { multipart: true }) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :image, id: 'product_image' %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

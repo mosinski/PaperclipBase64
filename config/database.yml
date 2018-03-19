@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
+  timeout: 5000
+
+development:
+  <<: *default
+  database: paperclip_base64_development
+
+test:
+  <<: *default
+  database: paperclip_base64_test
+
+production:
+  <<: *default
+  database: paperclip_base64_production
+  username: paperclip_base64
+  password: <%= ENV['PAPERCLIP_BASE64_DATABASE_PASSWORD'] %>
